@@ -1,4 +1,7 @@
 # QvPrjManager
+
+Note: Qlikview is a registered trademark of Qlik.
+
 Bulk Change properties of QVW files
 
 Overview
