@@ -148,7 +148,12 @@ namespace QVPrjManager
             UpdatedChartsTextBox.Clear();
 
             // Create and update -prj folders if needed and then backup -prj folders
-            qlikViewOperation.CreatePRJFolders(UpdatedChartsTextBox, SingleRadioButton.Checked, RefreshPrjCheckBox.Checked, targetDocuments);
+            bool success = qlikViewOperation.CreatePRJFolders(UpdatedChartsTextBox, SingleRadioButton.Checked, RefreshPrjCheckBox.Checked, AutomationCheckBox.Checked, targetDocuments);
+            if(!success)
+            {
+                MessageBox.Show("Open each QVW that you wish to update and click \"Save\" in order to populate the associated -prj folder. Then run this app again.", "Manual -prj update notice", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                return;
+            }
             backupOperation.BackupAll(UpdatedChartsTextBox, SingleRadioButton.Checked, targetDocuments);
 
             foreach (string operation in operations)
@@ -208,7 +213,8 @@ namespace QVPrjManager
             UpdatedChartsTextBox.Text += string.Format("Refreshing project{0} after operation{0}...", (SingleRadioButton.Checked ? "" : "(s)"));
             UpdatedChartsTextBox.Refresh();
 
-            qlikViewOperation.RefreshQVW(UpdatedChartsTextBox, targetDocuments);
+            if(AutomationCheckBox.Checked)
+                qlikViewOperation.RefreshQVW(UpdatedChartsTextBox, targetDocuments);
 
             MessageBox.Show("Operations Complete!", "Copy Operations", MessageBoxButtons.OK, MessageBoxIcon.Information);
         }

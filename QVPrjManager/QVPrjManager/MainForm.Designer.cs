@@ -51,6 +51,7 @@
             this.OperationsTreeView = new System.Windows.Forms.TreeView();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.OperationsTabPage = new System.Windows.Forms.TabPage();
+            this.RefreshPrjCheckBox = new System.Windows.Forms.CheckBox();
             this.UpdatedChartsTextBox = new System.Windows.Forms.TextBox();
             this.PerformOperationButton = new System.Windows.Forms.Button();
             this.WallpaperTabPage = new System.Windows.Forms.TabPage();
@@ -66,7 +67,7 @@
             this.MultipleRadioButton = new System.Windows.Forms.RadioButton();
             this.SingleRadioButton = new System.Windows.Forms.RadioButton();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.RefreshPrjCheckBox = new System.Windows.Forms.CheckBox();
+            this.AutomationCheckBox = new System.Windows.Forms.CheckBox();
             this.tabControl1.SuspendLayout();
             this.OperationsTabPage.SuspendLayout();
             this.WallpaperTabPage.SuspendLayout();
@@ -90,7 +91,9 @@
             this.SelectedProjectTextBox.Name = "SelectedProjectTextBox";
             this.SelectedProjectTextBox.Size = new System.Drawing.Size(678, 20);
             this.SelectedProjectTextBox.TabIndex = 0;
-            this.toolTip1.SetToolTip(this.SelectedProjectTextBox, "\"hello\"");
+            this.toolTip1.SetToolTip(this.SelectedProjectTextBox, "Choose XML file from existing -prj folder to use as the\r\nMaster object, from whic" +
+        "h properties will be copied to\r\nother QVWs.\r\n\r\nChart objects work best (CH*.xml)" +
+        "!");
             // 
             // label4
             // 
@@ -109,6 +112,7 @@
             this.FindProjectButton.Size = new System.Drawing.Size(25, 20);
             this.FindProjectButton.TabIndex = 1;
             this.FindProjectButton.Text = "...";
+            this.toolTip1.SetToolTip(this.FindProjectButton, "Click to choose the Master Object");
             this.FindProjectButton.UseVisualStyleBackColor = true;
             this.FindProjectButton.Click += new System.EventHandler(this.FindProjectButton_Click);
             // 
@@ -144,7 +148,8 @@
             treeNode8,
             treeNode9});
             this.OperationsTreeView.Size = new System.Drawing.Size(215, 296);
-            this.OperationsTreeView.TabIndex = 14;
+            this.OperationsTreeView.TabIndex = 0;
+            this.toolTip1.SetToolTip(this.OperationsTreeView, "Choose one or more operations to perform");
             // 
             // tabControl1
             // 
@@ -156,7 +161,7 @@
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(601, 338);
-            this.tabControl1.TabIndex = 15;
+            this.tabControl1.TabIndex = 0;
             // 
             // OperationsTabPage
             // 
@@ -170,6 +175,17 @@
             this.OperationsTabPage.TabIndex = 0;
             this.OperationsTabPage.Text = "Colors and Fonts";
             this.OperationsTabPage.UseVisualStyleBackColor = true;
+            // 
+            // RefreshPrjCheckBox
+            // 
+            this.RefreshPrjCheckBox.AutoSize = true;
+            this.RefreshPrjCheckBox.Location = new System.Drawing.Point(16, 9);
+            this.RefreshPrjCheckBox.Name = "RefreshPrjCheckBox";
+            this.RefreshPrjCheckBox.Size = new System.Drawing.Size(170, 17);
+            this.RefreshPrjCheckBox.TabIndex = 0;
+            this.RefreshPrjCheckBox.Text = "Refresh -prj Prior to Operations";
+            this.toolTip1.SetToolTip(this.RefreshPrjCheckBox, "If using Automation, this forces the refresh of -prj folders before operations");
+            this.RefreshPrjCheckBox.UseVisualStyleBackColor = true;
             // 
             // UpdatedChartsTextBox
             // 
@@ -191,6 +207,7 @@
             this.PerformOperationButton.Size = new System.Drawing.Size(100, 23);
             this.PerformOperationButton.TabIndex = 1;
             this.PerformOperationButton.Text = "Perform Operation";
+            this.toolTip1.SetToolTip(this.PerformOperationButton, "Click this to perform the operations chosen on the target project(s)");
             this.PerformOperationButton.UseVisualStyleBackColor = true;
             this.PerformOperationButton.Click += new System.EventHandler(this.PerformOperationButton_Click);
             // 
@@ -205,6 +222,8 @@
             this.WallpaperTabPage.Size = new System.Drawing.Size(593, 312);
             this.WallpaperTabPage.TabIndex = 1;
             this.WallpaperTabPage.Text = "Wallpaper";
+            this.toolTip1.SetToolTip(this.WallpaperTabPage, "This tab allows updating the wallpaper image of the project that contains the Mas" +
+        "ter Object");
             this.WallpaperTabPage.UseVisualStyleBackColor = true;
             // 
             // CopyImageButton
@@ -212,8 +231,9 @@
             this.CopyImageButton.Location = new System.Drawing.Point(167, 6);
             this.CopyImageButton.Name = "CopyImageButton";
             this.CopyImageButton.Size = new System.Drawing.Size(155, 23);
-            this.CopyImageButton.TabIndex = 2;
+            this.CopyImageButton.TabIndex = 1;
             this.CopyImageButton.Text = "Copy Image to Master";
+            this.toolTip1.SetToolTip(this.CopyImageButton, "Update the wallpaper in the project that contains the Master Object");
             this.CopyImageButton.UseVisualStyleBackColor = true;
             this.CopyImageButton.Click += new System.EventHandler(this.CopyImageButton_Click);
             // 
@@ -222,8 +242,10 @@
             this.LoadImageFromDiskButton.Location = new System.Drawing.Point(6, 6);
             this.LoadImageFromDiskButton.Name = "LoadImageFromDiskButton";
             this.LoadImageFromDiskButton.Size = new System.Drawing.Size(155, 23);
-            this.LoadImageFromDiskButton.TabIndex = 2;
+            this.LoadImageFromDiskButton.TabIndex = 0;
             this.LoadImageFromDiskButton.Text = "Load New Image From Disk";
+            this.toolTip1.SetToolTip(this.LoadImageFromDiskButton, "Select and load a new image to become wallpaper in the project that contains the " +
+        "Master Object");
             this.LoadImageFromDiskButton.UseVisualStyleBackColor = true;
             this.LoadImageFromDiskButton.Click += new System.EventHandler(this.LoadImageFromDiskButton_Click);
             // 
@@ -275,16 +297,17 @@
             this.TargetProjectTextBox.Location = new System.Drawing.Point(132, 61);
             this.TargetProjectTextBox.Name = "TargetProjectTextBox";
             this.TargetProjectTextBox.Size = new System.Drawing.Size(678, 20);
-            this.TargetProjectTextBox.TabIndex = 4;
+            this.TargetProjectTextBox.TabIndex = 5;
+            this.toolTip1.SetToolTip(this.TargetProjectTextBox, "Shows either the single QVW being updated or the path where multiple QVWs reside");
             // 
             // label7
             // 
             this.label7.AutoSize = true;
-            this.label7.Location = new System.Drawing.Point(24, 64);
+            this.label7.Location = new System.Drawing.Point(13, 64);
             this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(102, 13);
+            this.label7.Size = new System.Drawing.Size(113, 13);
             this.label7.TabIndex = 11;
-            this.label7.Text = "Target Project Path:";
+            this.label7.Text = "Target Project(s) Path:";
             // 
             // FindTargetProjectButton
             // 
@@ -292,8 +315,9 @@
             this.FindTargetProjectButton.Location = new System.Drawing.Point(816, 61);
             this.FindTargetProjectButton.Name = "FindTargetProjectButton";
             this.FindTargetProjectButton.Size = new System.Drawing.Size(25, 20);
-            this.FindTargetProjectButton.TabIndex = 5;
+            this.FindTargetProjectButton.TabIndex = 6;
             this.FindTargetProjectButton.Text = "...";
+            this.toolTip1.SetToolTip(this.FindTargetProjectButton, "Click to choose the target QVWs");
             this.FindTargetProjectButton.UseVisualStyleBackColor = true;
             this.FindTargetProjectButton.Click += new System.EventHandler(this.FindTargetProjectButton_Click);
             // 
@@ -314,6 +338,7 @@
             this.MultipleRadioButton.Size = new System.Drawing.Size(102, 17);
             this.MultipleRadioButton.TabIndex = 3;
             this.MultipleRadioButton.Text = "Multiple Projects";
+            this.toolTip1.SetToolTip(this.MultipleRadioButton, "Select multiple QVWs to update");
             this.MultipleRadioButton.UseVisualStyleBackColor = true;
             // 
             // SingleRadioButton
@@ -326,23 +351,35 @@
             this.SingleRadioButton.TabIndex = 2;
             this.SingleRadioButton.TabStop = true;
             this.SingleRadioButton.Text = "Single Project";
+            this.toolTip1.SetToolTip(this.SingleRadioButton, "Select single QVW to update.");
             this.SingleRadioButton.UseVisualStyleBackColor = true;
             // 
-            // RefreshPrjCheckBox
+            // toolTip1
             // 
-            this.RefreshPrjCheckBox.AutoSize = true;
-            this.RefreshPrjCheckBox.Location = new System.Drawing.Point(16, 9);
-            this.RefreshPrjCheckBox.Name = "RefreshPrjCheckBox";
-            this.RefreshPrjCheckBox.Size = new System.Drawing.Size(170, 17);
-            this.RefreshPrjCheckBox.TabIndex = 0;
-            this.RefreshPrjCheckBox.Text = "Refresh -prj Prior to Operations";
-            this.RefreshPrjCheckBox.UseVisualStyleBackColor = true;
+            this.toolTip1.AutoPopDelay = 7500;
+            this.toolTip1.InitialDelay = 500;
+            this.toolTip1.IsBalloon = true;
+            this.toolTip1.ReshowDelay = 100;
+            // 
+            // AutomationCheckBox
+            // 
+            this.AutomationCheckBox.AutoSize = true;
+            this.AutomationCheckBox.Location = new System.Drawing.Point(665, 38);
+            this.AutomationCheckBox.Name = "AutomationCheckBox";
+            this.AutomationCheckBox.Size = new System.Drawing.Size(145, 17);
+            this.AutomationCheckBox.TabIndex = 4;
+            this.AutomationCheckBox.Text = "Use QlikView Automation";
+            this.toolTip1.SetToolTip(this.AutomationCheckBox, "If you have QlikView 11 or higher installed,\r\nand you want to automatically popul" +
+        "ate / refresh\r\nthe contents of the -prj folders associated with the \r\nTarget Pro" +
+        "ject(s), then check this box.");
+            this.AutomationCheckBox.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(853, 437);
+            this.Controls.Add(this.AutomationCheckBox);
             this.Controls.Add(this.SingleRadioButton);
             this.Controls.Add(this.MultipleRadioButton);
             this.Controls.Add(this.splitContainer2);
@@ -395,6 +432,7 @@
         private System.Windows.Forms.Button CopyImageButton;
         private System.Windows.Forms.ToolTip toolTip1;
         private System.Windows.Forms.CheckBox RefreshPrjCheckBox;
+        private System.Windows.Forms.CheckBox AutomationCheckBox;
     }
 }
 
