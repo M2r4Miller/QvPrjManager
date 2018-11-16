@@ -363,12 +363,14 @@
             // 
             // AutomationCheckBox
             // 
+            this.AutomationCheckBox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.AutomationCheckBox.AutoSize = true;
             this.AutomationCheckBox.Location = new System.Drawing.Point(665, 38);
             this.AutomationCheckBox.Name = "AutomationCheckBox";
             this.AutomationCheckBox.Size = new System.Drawing.Size(145, 17);
             this.AutomationCheckBox.TabIndex = 4;
             this.AutomationCheckBox.Text = "Use QlikView Automation";
+            this.AutomationCheckBox.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             this.toolTip1.SetToolTip(this.AutomationCheckBox, "If you have QlikView 11 or higher installed,\r\nand you want to automatically popul" +
         "ate / refresh\r\nthe contents of the -prj folders associated with the \r\nTarget Pro" +
         "ject(s), then check this box.");
