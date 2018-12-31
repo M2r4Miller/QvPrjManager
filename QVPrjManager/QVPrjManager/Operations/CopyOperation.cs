@@ -173,6 +173,9 @@ namespace QVPrjManager.Operations
         private void UpdateResults(string text)
         {
             resultsTextBox.Text += text + Environment.NewLine;
+            resultsTextBox.Focus();
+            resultsTextBox.SelectAll();
+            resultsTextBox.ScrollToCaret();
             resultsTextBox.Refresh();
         }
     }
